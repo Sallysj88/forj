@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forj - Transform. Thrive. Forj Ahead.</title>
+    <style>
+        /* Base styles */
+        :root {
+            --green-primary: #4A7C59;
+            --green-secondary: #8AAA9D;
+            --purple-primary: #674E7A;
+            --purple-secondary: #9D89B3;
+            --gold: #D4B483;
+            --grey-dark: #444444;
+            --grey-medium: #777777;
+            --grey-light: #F5F5F5;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--grey-dark);
+            line-height: 1.6;
+        }
+        
+        img {
+            max-width: 100%;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header and Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .top-bar {
+            background-color: var(--green-primary);
+            color: var(--white);
+            padding: 8px 0;
+        }
+        
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            width: 120px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--grey-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--purple-primary);
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-radius: 4px;
+        }
+        
+        .dropdown-content a {
+            color: var(--grey-dark);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--grey-light);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--green-secondary) 0%, var(--purple-secondary) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--purple-primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--purple-primary);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--white);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            margin-left: 15px;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--purple-primary);
+        }
+        
+        /* Services Grid */
+        .services {
+            padding: 80px 0;
+            background-color: var(--grey-light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--purple-primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--grey-medium);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-img {
+            height: 200px;
+            background-color: var(--grey-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--green-primary);
+        }
+        
+        .service-content p {
+            margin-bottom: 20px;
+        }
+        
+        .read-more {
+            color: var(--purple-primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .read-more span {
+            margin-left: 5px;
+            transition: margin-left 0.3s;
+        }
+        
+        .read-more:hover span {
+            margin-left: 10px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+        }
+        
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-content h2 {
+            font-size: 2.2rem;
+            color: var(--purple-primary);
+            margin-bottom: 20px;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .feature-icon {
+            background-color: var(--green-secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .feature-icon i {
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--grey-light);
+            padding: 80px 0;
+        }
+        
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .testimonial-item {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--green-primary);
+        }
+        
+        /* Call to Action */
+        .cta {
+            background-color: var(--purple-primary);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        .cta .btn {
+            background-color: var(--gold);
+            border-color: var(--gold);
+            color: var(--grey-dark);
+        }
+        
+        .cta .btn:hover {
+            background-color: transparent;
+            color: var(--white);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--grey-dark);
+            color: var(--grey-light);
+            padding: 60px 0 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-about img {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--gold);
+            color: var(--grey-dark);
+        }
+        
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: var(--grey-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+        
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--gold);
+        }
+        
+        .footer-bottom {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-header {
+                padding: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav li {
+                margin: 10px 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 20px;
+            }
+            
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .services-grid,
+            .about-container,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <span>Email: info@forj.com</span>
+            </div>
+            <div class="top-links">
+                <a href="#">Support</a>
+                <a href="#">Log In</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="main-header">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo-placeholder.png" alt="Forj Logo">
+                    </a>
+                </div>
+                <button class="mobile-menu-btn">☰</button>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">Our Programs</a>
+                            <div class="dropdown-content">
+                                <a href="#">Strength Training</a>
+                                <a href="#">Menopause Wellness</a>
+                                <a href="#">Online Coaching</a>
+                                <a href="#">Group Classes</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">About Us</a>
+                            <div class="dropdown-content">
+                                <a href="#">Our Story</a>
+                                <a href="#">Team</a>
+                                <a href="#">Testimonials</a>
+                            </div>
+                        </li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Transform. Thrive. Forj Ahead.</h1>
+            <p>A friendly online strength training community created by women in their 40s for women navigating this unique season of life.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn">Start Your Journey</a>
+                <a href="#" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Programs</h2>
+                <p>Customized strength training programs designed specifically for women in midlife, focusing on menopause wellness and longevity.</p>
+            </div>
+            <div class="services-grid">
+                <!-- Service Card 1 -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="service-placeholder.jpg" alt="Strength Training">
+                    </div>
+                    <div class="service-content">
+                        <h3>Strength Training</h3>
+                        <p>Our core program focused on building muscle mass and bone density, crucial for women in midlife and beyond.</p>
+                        <a href="#" class="read-more">Learn More <span>→</span></a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="service-placeholder.jpg" alt="Menopause Wellness">
+                    </div>
+                    <div class="service-content">
+                        <h3>Menopause Wellness</h3>
+                        <p>Specialized programs that address the unique challenges women face during perimenopause and menopause.</p>
+                        <a href="#" class="read-more">Learn More <span>→</span></a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="service-placeholder.jpg" alt="Online Coaching">
+                    </div>
+                    <div class="service-content">
+                        <h3>Online Coaching</h3>
+                        <p>One-on-one guidance tailored to your specific needs, goals, and lifestyle, all from the comfort of your home.</p>
+                        <a href="#" class="read-more">Learn More <span>→</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-img">
+                    <img src="about-placeholder.jpg" alt="About Forj">
+                </div>
+                <div class="about-content">
+                    <h2>Who We Are</h2>
+                    <p>Welcome to Forj, a friendly online strength training community created by ordinary women, Katy and Sally, who are in their 40s and truly understand the struggles faced by women in this season of life.</p>
+                    <p>We specialize in menopause, longevity, and empowering you with knowledge about the importance of muscle health for staying active and fit as you age.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i>✓</i>
+                            </div>
+                            <div>
+                                <h4>Customized Plans</h4>
+                                <p>Tailored to your unique needs and goals</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i>✓</i>
+                            </div>
+                            <div>
+                                <h4>Supportive Community</h4>
+                                <p>Join women on the same journey</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i>✓</i>
+                            </div>
+                            <div>
+                                <h4>Expert Guidance</h4>
+                                <p>From women who understand</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i>✓</i>
+                            </div>
+                            <div>
+                                <h4>Evidence-Based Approach</h4>
+                                <p>Grounded in science and research</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn" style="margin-top: 30px;">Our Story</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Member Stories</h2>
+                <p>Hear from women who have transformed their lives through our programs.</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-item">
+                    <div class="testimonial-quote">
+                        "Joining Forj was a game-changer for me. At 47, I was struggling with weight gain and fatigue due to perimenopause. Their strength training program not only helped me regain my energy but also improved my sleep and mood. Katy and Sally truly understand what we're going through."
+                    </div>
+                    <div class="testimonial-author">
+                        - Jennifer, 47
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Start Your Strength Journey?</h2>
+            <p>Join our community of like-minded women and transform your life with customized strength training designed for your unique needs.</p>
+            <a href="#" class="btn">Join Forj Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="logo-placeholder.png" alt="Forj Logo">
+                    <p>A community of women empowering women through strength training, wellness, and support during midlife.</p>
+                    <div class="social-links">
+                        <a href="#"><i>f</i></a>
+                        <a href="#"><i>in</i></a>
+                        <a href="#"><i>ig</i></a>
+                        <a href="#"><i>yt</i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Our Programs</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Our Programs</h4>
+                    <ul>
+                        <li><a href="#">Strength Training</a></li>
+                        <li><a href="#">Menopause Wellness</a></li>
+                        <li><a href="#">Online Coaching</a></li>
+                        <li><a href="#">Group Classes</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li>
+                            <i>✉</i>
+                            <span>info@forj.com</span>
+                        </li>
+                        <li>
+                            <i>☏</i>
+                            <span>+1 (123) 456-7890</span>
+                        </li>
+                        <li>
+                            <i>⌂</i>
+                            <span>123 Fitness Street<br>Wellness City, WC 12345</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Forj. All rights reserved. Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+        
+        // For a real implementation, you would add more JavaScript for dropdown toggles on mobile,
+        // testimonial sliders, smooth scrolling, etc.
+    </script>
+</body>
+</html>
